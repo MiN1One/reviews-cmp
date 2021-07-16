@@ -17,7 +17,7 @@ const CAROUSEL_OPTIONS = {
   className: "reviews__carousel",
   centerPadding: '15px',
   autoplay: true,
-  speed: 500,
+  speed: 1750,
   autoplaySpeed: 2500,
   swipeToSlide: false,
   responsive: [
@@ -59,8 +59,8 @@ const Reviews = ({ data }) => {
         <p>Real reviews from real customers</p>
         <div className="reviews__head__right">
           <RatingStars rating={averageRating} />
-          <span className="reviews__count">{reviews.length}</span>
-          <div className="review__btn-group">
+          <span className="reviews__count">{reviews.length} Reviews</span>
+          <div>
             <button 
               className="reviews__btn reviews__btn--prev" 
               onClick={() => sliderRef.current?.slickPrev()}
