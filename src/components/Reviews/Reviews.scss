@@ -1,0 +1,56 @@
+.reviews {
+  width: 100%;
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+
+    &__right {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    color: #000;
+  }
+
+  &__icon {
+    width: 22.5px;
+    height: 22.5px;
+    fill: #56575f;
+  }
+
+  &__icon-stars {
+    width: 21px;
+    height: 21px;
+    fill: #000;
+  }
+
+  &__carousel {
+    display: flex;
+    padding-top: 15px;
+    width: 100%;
+  }
+
+  &__count {
+    color: #838383;
+    margin: 0 5px 0 10px;
+  }
+
+  &__btn-group {
+
+  }
+
+  &__btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    &:first-child { margin-right: 5px; }
+  }
+}
