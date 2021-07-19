@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 
 import image from '../../../assets/images/square.jpg';
 import './Card.scss';
@@ -15,17 +16,17 @@ const parseUTCTime = (date) => {
   }
 };
 
-const ReviewCard = ({ data }) => {
-  const { day, month, year } = parseUTCTime(data.updated_at);
+const ReviewCard = ({ review }) => {
+  const { day, month, year } = parseUTCTime(review.updated_at);
 
   return (
     <div className="reviews-card">
       <div className="reviews-card__head">
-        <RatingStars rating={data.score} />
+        <RatingStars rating={review.score} />
         <div className="reviews-card__label">{month}/{day}/{year}</div>
       </div>
       <div className="reviews-card__title">
-        {data.title}
+        {review.title}
       </div>
       <div className="reviews-card__body">
         <a className="reviews-card__link" href="/link">
@@ -35,12 +36,26 @@ const ReviewCard = ({ data }) => {
           <span>Product label</span>
         </a>
         <div>
-          <p className="reviews-card__text">{data.content}</p>
-          <span className="reviews-card__label">{data.name}</span>
+          <p className="reviews-card__text">{review.content}</p>
+          <span className="reviews-card__label">{review.name}</span>
         </div>
       </div>
     </div>
   );
-}
+};
+
+ReviewCard.propTypes = {
+  review: PropTypes.shape({
+    updated_at: PropTypes.string,
+    score: PropTypes.number,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    name: PropTypes.string,
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ])
+  }).isRequired
+};
 
 export default memo(ReviewCard);
