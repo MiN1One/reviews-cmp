@@ -1,4 +1,4 @@
-import { memo, useRef } from 'react';
+import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import PropTypes from 'prop-types';
@@ -16,11 +16,9 @@ const CAROUSEL_OPTIONS = {
   slidesToShow: 3,
   infinite: true,
   className: "reviews__carousel",
-  centerPadding: '15px',
   autoplay: true,
   speed: 1750,
   autoplaySpeed: 2500,
-  swipeToSlide: false,
   responsive: [
     {
       breakpoint: 860,
@@ -45,6 +43,7 @@ const CAROUSEL_OPTIONS = {
 
 const Reviews = ({ reviews }) => {
   const sliderRef = useRef();
+  const [grabbing, setGrabbing] = useState(false);
 
   // Dummy data
   // const { reviews = [] } = JSON.parse(DATA);
@@ -61,26 +60,34 @@ const Reviews = ({ reviews }) => {
         <p>Real reviews from real customers</p>
         <div className="reviews__head__right">
           <RatingStars rating={averageRating} />
-          <span className="reviews__count">{reviews?.length || 0} Reviews</span>
-          <div>
-            <button 
-              className="reviews__btn reviews__btn--prev" 
-              onClick={() => sliderRef.current?.slickPrev()}
-            >
-              <BsChevronLeft className="reviews__icon" />
-            </button>
-            <button 
-              className="reviews__btn reviews__btn--next" 
-              onClick={() => sliderRef.current?.slickNext()}
-            >
-              <BsChevronRight className="reviews__icon" />
-            </button>
+          <div className="reviews__head__right-wrapper">
+            <span className="reviews__count">{reviews?.length || 0} Reviews</span>
+            <div>
+              <button 
+                className="reviews__btn reviews__btn--prev" 
+                onClick={() => sliderRef.current?.slickPrev()}
+              >
+                <BsChevronLeft className="reviews__icon" />
+              </button>
+              <button 
+                className="reviews__btn reviews__btn--next" 
+                onClick={() => sliderRef.current?.slickNext()}
+              >
+                <BsChevronRight className="reviews__icon" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <Slider ref={sliderRef} {...CAROUSEL_OPTIONS} >
-        {reviewsElements}
-      </Slider>
+      <div 
+        className="reviews__carousel-wrapper" 
+        onMouseUp={() => setGrabbing(false)}
+        onMouseDown={() => setGrabbing(true)}
+        style={{ cursor: grabbing ? 'grabbing' : 'grab' }}>
+        <Slider ref={sliderRef} {...CAROUSEL_OPTIONS}>
+          {reviewsElements}
+        </Slider>
+      </div>
     </div>
   );
 }

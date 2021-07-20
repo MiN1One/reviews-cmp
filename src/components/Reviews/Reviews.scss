@@ -12,6 +12,23 @@
       display: flex;
       align-items: center;
     }
+
+    &__right-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    @media screen and (max-width: 520px) {
+      flex-direction: column;
+      align-items: flex-start;
+
+      p { margin-bottom: 7.5px; }
+
+      &__right {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
   }
 
   &__title {
@@ -30,6 +47,8 @@
     height: 21px;
     fill: #000;
   }
+
+  &__carousel-wrapper { width: 100%; }
 
   &__carousel {
     display: flex;

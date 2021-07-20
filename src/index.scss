@@ -8,8 +8,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
+svg { display: flex; }
+
 .App {
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 150px;
+
+  @media screen and (max-width: 1200px) {
+    padding: 0 20px;
+  }
 }
